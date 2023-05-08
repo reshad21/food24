@@ -44,6 +44,10 @@ const Navber = () => {
                         </ul>
                     </div>
                 </div>
+                <div className="flex justify-center gap-3">
+                    <Link to='/login' className='btn btn-outline btn-primary'>Login</Link>
+                    <Link to='/signup' className='btn btn-outline btn-primary'>Signup</Link>
+                </div>
             </div>
         </div>
 
