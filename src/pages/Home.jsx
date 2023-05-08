@@ -1,9 +1,17 @@
 import React from 'react';
+import ProductCard from '../components/ProductCard';
 
 const Home = () => {
     return (
-        <div>
-            <p>this is homepage</p>
+        <div className='max-w-7xl gap-14 mx-auto my-10'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10'>
+                <ProductCard></ProductCard>
+                <ProductCard></ProductCard>
+                <ProductCard></ProductCard>
+                <ProductCard></ProductCard>
+                <ProductCard></ProductCard>
+                <ProductCard></ProductCard>
+            </div>
         </div>
     );
 };
