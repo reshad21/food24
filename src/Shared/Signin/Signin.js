@@ -1,12 +1,16 @@
 import { GoogleAuthProvider, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth, useFirebaseAuth } from '../../context/AuthProvider';
 
 const Signin = () => {
 
     const { createUser, googleSignIn } = useFirebaseAuth();
-    const [signUpError, setSignUPError] = useState('')
+    const [signUpError, setSignUPError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+
     const handleSignUp = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -30,12 +34,15 @@ const Signin = () => {
                     displayName: name
                 })
 
-
+                
+                
             })
             .catch(error => {
                 console.log(error)
                 setSignUPError(error.message)
             });
+            
+            navigate(from, { replace: true });
     }
 
 

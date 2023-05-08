@@ -1,7 +1,48 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import avatar from '../../assets/0be61272117251004060346e57b7b6e6.jpg';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useFirebaseAuth } from '../../context/AuthProvider';
 const Navber = () => {
+    const { user, logOut } = useFirebaseAuth();
+    // console.log(user);
+    // console.log(user?.displayName);
+    // console.log(user?.photoURL);
+    const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || '/';
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => {
+                navigate(from, { replace: true });
+            })
+            .catch((error) => { });
+    }
+
+    const menuItems = <>
+        {
+            user?.displayName ?
+                // <li><Link onClick={handleLogOut} >Logout</Link></li>
+                <div className="dropdown dropdown-end">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                        <div className="w-10 rounded-full">
+                            <img src={user?.photoURL} alt='avatar' />
+                        </div>
+                    </label>
+                    <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                        <li>
+                            <Link className="justify-between">
+                                Profile
+                                <span className="badge">New</span>
+                            </Link>
+                        </li>
+                        <li><Link>Settings</Link></li>
+                        <li><Link onClick={handleLogOut}>Logout</Link></li>
+                    </ul>
+                </div>
+                :
+                <li><Link to="/login">Login</Link></li>
+        }
+    </>
     return (
         <div className="max-w-7xl gap-14 mx-auto my-10">
             <div className="navbar bg-base-100">
@@ -26,27 +67,10 @@ const Navber = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src={avatar} alt='avatar' />
-                            </div>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <Link className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </Link>
-                            </li>
-                            <li><Link>Settings</Link></li>
-                            <li><Link>Logout</Link></li>
-                        </ul>
-                    </div>
+
                 </div>
                 <div className="flex justify-center gap-3">
-                    <Link to='/login' className='btn btn-outline btn-primary'>Login</Link>
-                    <Link to='/signup' className='btn btn-outline btn-primary'>Signup</Link>
+                    {menuItems}
                 </div>
             </div>
         </div>
