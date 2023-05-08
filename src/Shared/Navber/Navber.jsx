@@ -40,12 +40,12 @@ const Navber = () => {
                     </ul>
                 </div>
                 :
-                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/login" className='btn btn-primary'>Login</Link></li>
         }
     </>
     return (
-        <div className="max-w-7xl gap-14 mx-auto my-10">
-            <div className="navbar bg-base-100">
+        <div className="max-w-7xl gap-14 mx-auto mb-10">
+            <div className="navbar bg-slate-300">
                 <div className="flex-1">
                     <Link className="btn btn-ghost normal-case text-xl">Food24</Link>
                 </div>
