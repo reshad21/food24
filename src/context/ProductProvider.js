@@ -1,9 +1,15 @@
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 const PRODUCT_CONTEXT = createContext();
 
 const ProductProvider = ({ children }) => {
-    const [data, setData] = useState(0);
+
+    const [products, setProduct] = useState([]);
+    useEffect(() => {
+        fetch('products.json')
+            .then(res => res.json())
+            .then(data => setProduct(data))
+    }, [])
 
 
     // const [state, dispatch] = useReducer(productReducer, initialState)
@@ -21,8 +27,8 @@ const ProductProvider = ({ children }) => {
     const value = {
         // state,
         // dispatch,
-        data, 
-        setData
+        products, setProduct
+
     }
 
     return (
