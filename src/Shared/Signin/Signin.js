@@ -1,5 +1,6 @@
 import { GoogleAuthProvider, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { auth, useFirebaseAuth } from '../../context/AuthProvider';
 
@@ -28,7 +29,7 @@ const Signin = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                // toast.success('User Created Successfully.');
+                toast.success('User Created Successfully.');
 
                 updateProfile(auth.currentUser, {
                     displayName: name

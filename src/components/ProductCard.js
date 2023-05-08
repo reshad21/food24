@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { toast } from "react-hot-toast";
 import buttonClickSound from '../assets/mixkit-on-or-off-light-switch-tap-2585.wav';
 import { useProducts } from "../context/ProductProvider";
 
@@ -16,6 +17,7 @@ const ProductCard = ({ product }) => {
         const audio = new Audio(buttonClickSound);
         audio.play();
         increment();
+        toast.success('ADD TO CART');
     }
 
 

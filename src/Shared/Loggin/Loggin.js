@@ -1,5 +1,6 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useFirebaseAuth } from '../../context/AuthProvider';
 
@@ -27,7 +28,7 @@ const Loggin = () => {
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                // toast.success('Login Successfully')
+                toast.success('Login Successfully');
                 console.log(user);
                 navigate(from, { replace: true });
             })
