@@ -12,23 +12,18 @@ const ProductProvider = ({ children }) => {
     }, [])
 
 
-    // const [state, dispatch] = useReducer(productReducer, initialState)
+    
 
-    // useEffect(() => {
-    //     dispatch({ type: actionTypes.FETCHING_START });
-    //     fetch('http://localhost:5000/products')
-    //         .then(res => res.json())
-    //         .then(data => dispatch({ type: actionTypes.FETCHING_SUCCESS, payload: data.data }))
-    //         .catch(()=>{
-    //             dispatch({type:actionTypes.FETCHING_ERROR})
-    //         })
-    // }, [])
+    const [count, setCount] = useState(0);
+    const [orders, setOrder] = useState([]);
+
+    const increment = () => {
+        setCount(count + 1);
+        setOrder([...orders, `Product ${count + 1}`])
+    };
 
     const value = {
-        // state,
-        // dispatch,
-        products, setProduct
-
+        products, setProduct, setCount , increment, count, orders
     }
 
     return (

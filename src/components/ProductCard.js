@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 import buttonClickSound from '../assets/mixkit-on-or-off-light-switch-tap-2585.wav';
+import { useProducts } from "../context/ProductProvider";
 
 const ProductCard = ({ product }) => {
-    console.log(product);
+
+    const {increment} = useProducts();
+
     useEffect(() => {
         new Audio(buttonClickSound);
     }, []);
@@ -12,6 +15,7 @@ const ProductCard = ({ product }) => {
     const handleOrder = ()=>{
         const audio = new Audio(buttonClickSound);
         audio.play();
+        increment();
     }
 
 
@@ -22,7 +26,7 @@ const ProductCard = ({ product }) => {
                 <img src={product?.image} alt={product?.image} />
             </div>
             <h1 className='font-bold text-center'>{product?.name}</h1>
-            <p className='text-center font-semibold mb-3'>Price: {product?.price} $</p>
+            <p className='text-center font-semibold mb-3'>Price: {product?.price}$</p>
             <p className='text-center font-semibold mb-3'>
                 {
                 
