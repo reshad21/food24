@@ -14,7 +14,7 @@ const Home = () => {
 
         let products = [];
         docSnap.docs.forEach((doc) => {
-            products.push({ ...doc.data(), id: doc.id });
+            products.push({ ...doc.data(), id: doc.id, quantity: 1 });
         });
 
         setItem(products);

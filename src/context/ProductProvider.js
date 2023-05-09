@@ -1,18 +1,8 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
 const PRODUCT_CONTEXT = createContext();
 
 const ProductProvider = ({ children }) => {
-
-    const [products, setProduct] = useState([]);
-    useEffect(() => {
-        fetch('products.json')
-            .then(res => res.json())
-            .then(data => setProduct(data))
-    }, [])
-
-
-    
 
     const [count, setCount] = useState(0);
     const [orders, setOrder] = useState([]);
@@ -23,7 +13,7 @@ const ProductProvider = ({ children }) => {
     };
 
     const value = {
-        products, setProduct, setCount , increment, count, orders
+        setCount , increment, count, orders
     }
 
     return (
