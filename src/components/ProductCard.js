@@ -55,9 +55,9 @@ const ProductCard = ({ product }) => {
             <p className='text-center font-semibold mb-3'>
                 {
 
-                    (product?.description.length > 200)
+                    (product?.description?.length > 100)
                         ?
-                        product?.description.slice(0, 90)
+                        product?.description?.slice(0, 90)
                         :
                         product?.description
 

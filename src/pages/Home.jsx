@@ -1,26 +1,9 @@
-import { collection, getDocs } from "firebase/firestore";
-import React, { useEffect, useState } from 'react';
-import { db } from "../Firebase/firebase.config";
+import React from 'react';
 import ProductCard from '../components/ProductCard';
+import { useProducts } from "../context/ProductProvider";
 
 const Home = () => {
-    const [items, setItem] = useState([]);
-
-    const fetchData = async () => {
-        const collectionRef = collection(db, "1");
-        const docSnap = await getDocs(collectionRef);
-
-        let products = [];
-        docSnap.docs.forEach((doc) => {
-            products.push({ ...doc.data(), id: doc.id, quantity: 1 });
-        });
-
-        setItem(products);
-    };
-
-    useEffect(() => {
-        fetchData();
-    }, [])
+    const { items } = useProducts();
 
     return (
         <div className='max-w-7xl gap-14 mx-auto my-10'>
