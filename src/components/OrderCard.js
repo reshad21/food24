@@ -1,22 +1,10 @@
 import React from 'react';
+import { useProducts } from '../context/ProductProvider';
 
 const OrderCard = ({ order }) => {
-    console.log('order card', order);
-    
-    const handleAdd = () => {
-        return {
-            ...order,
-            quantity: order.quantity + 1,
+    // console.log('order card', order);
+    const { handleAdd, handleRemove } = useProducts();
 
-        }
-    }
-    const handleRemove = () => {
-        return {
-            ...order,
-            quantity: order.quantity - 1,
-
-        }
-    }
     return (
         <div className='shadow-lg relative rounded-3xl border p-3 flex flex-col text-indigo-900'>
             {/* <h1>{order?.description}</h1> */}
@@ -40,13 +28,13 @@ const OrderCard = ({ order }) => {
                 }
             </p>
 
-            <button onClick={handleAdd} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
+            <button onClick={() => handleAdd(order.id)} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
                 Add Item
             </button>
 
 
 
-            <button onClick={handleRemove} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
+            <button onClick={() => handleRemove(order.id)} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
                 Remove Item
             </button>
 

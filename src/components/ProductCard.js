@@ -5,7 +5,7 @@ import buttonClickSound from '../assets/mixkit-on-or-off-light-switch-tap-2585.w
 import { useProducts } from "../context/ProductProvider";
 
 const ProductCard = ({ product }) => {
-    console.log("single product info", product);
+    // console.log("single product info", product);
 
     const { increment } = useProducts();
 

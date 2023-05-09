@@ -5,8 +5,8 @@ import { db } from "../Firebase/firebase.config";
 const PRODUCT_CONTEXT = createContext();
 
 const ProductProvider = ({ children }) => {
+    // this code is for firebase data fetching
     const [items, setItem] = useState([]);
-
     const fetchData = async () => {
         const collectionRef = collection(db, "1");
         const docSnap = await getDocs(collectionRef);
@@ -37,8 +37,31 @@ const ProductProvider = ({ children }) => {
         setOrder([...orders, newOrder]);
     };
 
+
+    const handleAdd = (productId) => {
+        const product = items.find(item => item.id === productId);
+        const newProduct = {
+            ...product,
+            quantity: product.quantity + 1,
+        }
+        return newProduct;
+    }
+
+
+    const handleRemove = (productId) => {
+        const product = items.find(item => item.id === productId);
+        return {
+            ...product,
+            quantity: product.quantity - 1,
+        }
+    }
+
+
+
+
+
     const value = {
-        items, setCount, increment, count, orders
+        items, setCount, increment, count, orders, handleAdd, handleRemove
     }
 
     return (
