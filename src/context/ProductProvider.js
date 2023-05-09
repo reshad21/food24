@@ -24,14 +24,17 @@ const ProductProvider = ({ children }) => {
     }, [])
 
 
-    
+
 
     const [count, setCount] = useState(0);
     const [orders, setOrder] = useState([]);
 
-    const increment = () => {
+    const increment = (productId) => {
         setCount(count + 1);
-        setOrder([...orders, `Product ${count + 1}`])
+        // setOrder([...orders, `Product ${count + 1}`])
+        const product = items.find(item => item.id === productId);
+        const newOrder = { ...product, quantity: 1 };
+        setOrder([...orders, newOrder]);
     };
 
     const value = {

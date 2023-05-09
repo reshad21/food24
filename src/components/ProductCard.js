@@ -15,29 +15,15 @@ const ProductCard = ({ product }) => {
 
 
 
-    const handleOrder = () => {
+    const handleOrder = (id) => {
         const audio = new Audio(buttonClickSound);
         audio.play();
-        increment();
+        increment(id);
         toast.success('ADD TO CART');
     }
 
     const { pathname } = useLocation();
 
-    const handleAdd = () => {
-        return {
-            ...product,
-            quantity: product.quantity + 1,
-
-        }
-    }
-    const handleRemove = () => {
-        return {
-            ...product,
-            quantity: product.quantity - 1,
-
-        }
-    }
 
 
     return (
@@ -68,25 +54,12 @@ const ProductCard = ({ product }) => {
 
             {!pathname.includes("cart") && (
                 <div className='flex gap-2 mt-5'>
-                    <button onClick={handleOrder} className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
+                    <button onClick={() => handleOrder(product.id)} className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
                         Order Now
                     </button>
                 </div>
             )}
 
-
-
-            {pathname.includes("cart") && (
-                <button onClick={handleAdd} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
-                    Add Item
-                </button>
-            )}
-
-            {pathname.includes("cart") && (
-                <button onClick={handleRemove} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
-                    Remove Item
-                </button>
-            )}
 
 
         </div>
