@@ -5,6 +5,7 @@ import buttonClickSound from '../assets/mixkit-on-or-off-light-switch-tap-2585.w
 import { useProducts } from "../context/ProductProvider";
 
 const ProductCard = ({ product }) => {
+    console.log("single product info", product);
 
     const { increment } = useProducts();
 
@@ -22,6 +23,21 @@ const ProductCard = ({ product }) => {
     }
 
     const { pathname } = useLocation();
+
+    const handleAdd = () => {
+        return {
+            ...product,
+            quantity: product.quantity + 1,
+
+        }
+    }
+    const handleRemove = () => {
+        return {
+            ...product,
+            quantity: product.quantity - 1,
+
+        }
+    }
 
 
     return (
@@ -61,13 +77,13 @@ const ProductCard = ({ product }) => {
 
 
             {pathname.includes("cart") && (
-                <button onClick={handleOrder} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
+                <button onClick={handleAdd} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
                     Add Item
                 </button>
             )}
 
             {pathname.includes("cart") && (
-                <button onClick={handleOrder} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
+                <button onClick={handleRemove} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
                     Remove Item
                 </button>
             )}

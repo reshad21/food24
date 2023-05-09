@@ -6,8 +6,6 @@ import ProductCard from '../components/ProductCard';
 const Home = () => {
     const [items, setItem] = useState([]);
 
-    // const { products } = useProducts();
-
     const fetchData = async () => {
         const collectionRef = collection(db, "1");
         const docSnap = await getDocs(collectionRef);
