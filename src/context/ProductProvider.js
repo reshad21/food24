@@ -32,7 +32,6 @@ const ProductProvider = ({ children }) => {
     const increment = () => {
         setCount(count + 1);
         setOrder([...orders, `Product ${count + 1}`])
-        setItem([...items, `Product ${count + 1}`])
     };
 
     const value = {
