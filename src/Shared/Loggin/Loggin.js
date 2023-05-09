@@ -24,7 +24,7 @@ const Loggin = () => {
         }
         console.log(data);
 
-        setLoginError('');
+        // setLoginError('');
         signIn(data.email, data.password)
             .then(result => {
                 const user = result.user;
@@ -60,12 +60,13 @@ const Loggin = () => {
                                 <label className="label"> <span className="label-text">Email</span></label>
                                 <input name='email' type="text" className="input input-bordered w-full max-w-xs" />
                             </div>
-                            <div className="form-control w-full max-w-xs">
+
+                            <div className="form-control w-full max-w-xs mb-2">
                                 <label className="label"> <span className="label-text">Password</span></label>
-                                <input type="password" className="input input-bordered w-full max-w-xs" />
-                                <label className="label"> <span className="label-text">Forget Password?</span></label>
+                                <input name='password' type="password" className="input input-bordered w-full max-w-xs" />
                             </div>
-                            <input name='password' className='btn btn-accent w-full' value="Login" type="submit" />
+                            
+                            <input name='login' value="Login" className='btn btn-accent w-full'  type="submit" />
                             <div>
                                 {loginError && <p className='text-red-600'>{loginError}</p>}
                             </div>
