@@ -61,7 +61,7 @@ const Loggin = () => {
                                 <input name='email' type="text" className="input input-bordered w-full max-w-xs" />
                             </div>
 
-                            <div className="form-control w-full max-w-xs mb-2">
+                            <div className="form-control w-full max-w-xs mb-5">
                                 <label className="label"> <span className="label-text">Password</span></label>
                                 <input name='password' type="password" className="input input-bordered w-full max-w-xs" />
                             </div>
@@ -71,7 +71,7 @@ const Loggin = () => {
                                 {loginError && <p className='text-red-600'>{loginError}</p>}
                             </div>
                         </form>
-                        <p>Food24 <Link className='text-secondary' to="/signup">Create new Account</Link></p>
+                        <p className='text-center'>Don't have an account? <Link className='text-secondary' to="/signup">Sign up</Link></p>
                         <div className="divider">OR</div>
                         <button onClick={handleGoogleSignin} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
                     </div>
