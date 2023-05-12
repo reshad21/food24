@@ -1,15 +1,22 @@
 import React from 'react';
 import { useProducts } from '../context/ProductProvider';
+import { ADD_AGAIN, REMOVE_AGAIN } from '../state/ProductSate/actionTypes';
 
 const OrderCard = ({ order }) => {
-    // console.log('order card', order);
-    const { handleAdd, handleRemove } = useProducts();
+    const { dispatch } = useProducts();
+
+    const handleAdd = () => {
+        dispatch({ type: ADD_AGAIN, payload: order })
+    }
+
+    const handleRemove = () => {
+        dispatch({ type: REMOVE_AGAIN, payload: order })
+    }
 
     return (
         <div className='shadow-lg relative rounded-3xl border p-3 flex flex-col text-indigo-900'>
-            {/* <h1>{order?.description}</h1> */}
             <div className='rounded-full grid place-items-center absolute top-2 right-2 bg-indigo-500 text-white h-8 w-8 font-bold '>
-                <p className="text-black"> {order?.quantity} </p>
+                <p className="text-white"> {order?.quantity} </p>
             </div>
             <div className='h-52 w-52 mx-auto'>
                 <img src={order?.image} alt={order?.image} />
@@ -28,13 +35,13 @@ const OrderCard = ({ order }) => {
                 }
             </p>
 
-            <button onClick={() => handleAdd(order.id)} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
+            <button onClick={handleAdd} className='bg-indigo-500 rounded-full py-1 px-2 mb-2 flex-1 text-white text-bold'>
                 Add Item
             </button>
 
 
 
-            <button onClick={() => handleRemove(order.id)} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
+            <button onClick={handleRemove} className='bg-rose-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
                 Remove Item
             </button>
 

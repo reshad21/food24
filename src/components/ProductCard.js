@@ -1,29 +1,24 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { toast } from "react-hot-toast";
 import { useLocation } from 'react-router-dom';
 import buttonClickSound from '../assets/mixkit-on-or-off-light-switch-tap-2585.wav';
 import { useProducts } from "../context/ProductProvider";
+import { ADD_TO_CART } from "../state/ProductSate/actionTypes";
 
 const ProductCard = ({ product }) => {
-    // console.log("single product info", product);
 
-    const { increment } = useProducts();
-
-    useEffect(() => {
-        new Audio(buttonClickSound);
-    }, []);
-
-
+    const {dispatch } = useProducts();
 
     const handleOrder = (id) => {
+        dispatch({ type: ADD_TO_CART, payload: product });
+
+        // Play the click sound
         const audio = new Audio(buttonClickSound);
         audio.play();
-        increment(id);
         toast.success('ADD TO CART');
     }
 
     const { pathname } = useLocation();
-
 
 
     return (
@@ -54,7 +49,7 @@ const ProductCard = ({ product }) => {
 
             {!pathname.includes("cart") && (
                 <div className='flex gap-2 mt-5'>
-                    <button onClick={() => handleOrder(product.id)} className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
+                    <button onClick={handleOrder} className='bg-indigo-500 rounded-full py-1 px-2 flex-1 text-white text-bold'>
                         Order Now
                     </button>
                 </div>

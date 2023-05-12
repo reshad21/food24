@@ -3,7 +3,9 @@ import ProductCard from '../components/ProductCard';
 import { useProducts } from "../context/ProductProvider";
 
 const Home = () => {
-    const { items } = useProducts();
+    const { state } = useProducts();
+    const { items } = state;
+    // console.log(items);
 
     return (
         <div className='max-w-7xl gap-14 mx-auto my-10'>
